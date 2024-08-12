@@ -1,10 +1,12 @@
 import React from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const StoryCardSkeleton = () => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 animate-pulse">
-      <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-      <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+      <Skeleton className="h-6 w-3/4 mb-2" />
+      <Skeleton className="h-4 w-1/2 mb-4" />
+      <Skeleton className="h-8 w-full mb-4" />
     </div>
   );
 };
