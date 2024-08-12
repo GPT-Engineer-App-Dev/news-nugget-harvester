@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
-import { ExternalLink, MessageSquare } from 'lucide-react';
+import { ExternalLink, MessageSquare, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CommentList from './CommentList';
+import { motion } from 'framer-motion';
 
 const StoryCard = ({ story }) => {
   const [showComments, setShowComments] = useState(false);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow">
-      <h2 className="text-xl font-semibold mb-2">{story.title}</h2>
-      <div className="flex justify-between items-center text-sm text-gray-600 mb-4">
-        <span>Points: {story.points}</span>
+    <motion.div 
+      className="bg-card text-card-foreground shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <h2 className="text-xl font-semibold mb-3">{story.title}</h2>
+      <div className="flex justify-between items-center text-sm text-muted-foreground mb-4">
+        <span className="flex items-center">
+          <ChevronUp className="mr-1 h-4 w-4 text-primary" />
+          {story.points}
+        </span>
         <a
           href={story.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center text-blue-500 hover:text-blue-700"
+          className="flex items-center text-primary hover:text-primary/80"
         >
           Read more <ExternalLink className="ml-1 h-4 w-4" />
         </a>
@@ -30,7 +39,7 @@ const StoryCard = ({ story }) => {
         {showComments ? 'Hide Comments' : 'Show Comments'}
       </Button>
       {showComments && <CommentList storyId={story.objectID} />}
-    </div>
+    </motion.div>
   );
 };
 
